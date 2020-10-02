@@ -12,7 +12,7 @@ authParams.cfg：存储授权参数，如token，cookie等。
 
 应对一些特殊情况，设置了排除的授权参数列表excludeAuthParamsList
 
-排除一些价值不大的响应isFilterStatusCode
+onlyIncludeStatusCode：设置检测的响应码，比如只检测200的响应
 
 原本想直接**取消**掉授权参数，但是可能造成响应失败，所以把授权参数值**替换**成自定义的数据，如cookie:[空]，token=unauthp。
 
