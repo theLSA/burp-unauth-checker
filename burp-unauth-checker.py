@@ -529,6 +529,8 @@ class BurpExtender(IBurpExtender, ITab, IScannerCheck, IExtensionStateListener, 
                     if authParamName in reqJsonBodyStringDict.keys():
                         reqJsonBodyStringDict[authParamName] = newAuthParamValue
 
+                '''        
+
                 ks = reqJsonBodyStringDict.keys()
                 for k in ks:
                     val = reqJsonBodyStringDict.pop(k)
@@ -543,6 +545,10 @@ class BurpExtender(IBurpExtender, ITab, IScannerCheck, IExtensionStateListener, 
                 #for key in reqJsonBodyStringDict:
                 #    key = key.encode('utf8')
                 #    reqJsonBodyStringDict[key] = reqJsonBodyStringDict[key].encode('utf8')
+                
+                '''
+
+                newReqJsonBodyString = json.dumps(reqJsonBodyStringDict,separators=(',', ':'))
 
                 jsonReqHeaders = self._helpers.analyzeRequest(newRemoveAuthHeaderRequest).getHeaders()
 
@@ -550,7 +556,8 @@ class BurpExtender(IBurpExtender, ITab, IScannerCheck, IExtensionStateListener, 
 
                 #isJsonReq = True
 
-                newRemoveGetPostAuthParamsRequest = self._helpers.buildHttpMessage(jsonReqHeaders, str(reqJsonBodyStringDict).replace('": ','":').replace(', "', ',"').replace(", {", ",{"))
+                #newRemoveGetPostAuthParamsRequest = self._helpers.buildHttpMessage(jsonReqHeaders, str(reqJsonBodyStringDict).replace("': ","':").replace(", '", ",'").replace(", {", ",{"))
+                newRemoveGetPostAuthParamsRequest = self._helpers.buildHttpMessage(jsonReqHeaders, newReqJsonBodyString)
 
 
         if haveRemoveGetPostAuthParams:
