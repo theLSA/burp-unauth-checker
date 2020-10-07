@@ -4,6 +4,8 @@
 
 自动化检测未授权访问漏洞
 
+关于该插件的实现细节，参考[burpsuite插件开发总结](https://www.lsablog.com/networksec/penetration/burpsuite-plugin-development/)
+
 ## 快速开始
 
 使用时需要勾选launchBurpUnauthChecker，建议在测试需要授权访问的功能时才开启（如网站后台）
